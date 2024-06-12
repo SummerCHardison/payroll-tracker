@@ -2,82 +2,94 @@
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
 // Collect employee data
-const collectEmployees = function() {
+const collectEmployees = function () {
   // TODO: Get user input to create and return an array of employee objects
-}
-
-// Display the average salary
-const displayAverageSalary = function(employeesArray) {
-  // TODO: Calculate and display the average salary
-}
-
-// Select a random employee
-const getRandomEmployee = function(employeesArray) {
-  // TODO: Select and display a random employee
-}
-
-/*
-  ====================
-  STARTER CODE
-  Do not modify any of the code below this line:
-*/
-
-// Display employee data in an HTML table
-const displayEmployees = function(employeesArray) {
-  // Get the employee table
-  const employeeTable = document.querySelector('#employee-table');
-
-  // Clear the employee table
-  employeeTable.innerHTML = '';
-
-  // Loop through the employee data and create a row for each employee
-  for (let i = 0; i < employeesArray.length; i++) {
-    const currentEmployee = employeesArray[i];
-
-    const newTableRow = document.createElement("tr");
-
-    const firstNameCell = document.createElement("td");
-    firstNameCell.textContent = currentEmployee.firstName;
-    newTableRow.append(firstNameCell);
-
-    const lastNameCell = document.createElement("td");
-    lastNameCell.textContent = currentEmployee.lastName;
-    newTableRow.append(lastNameCell);
-
-    const salaryCell = document.createElement("td");
-    // Format the salary as currency
-    salaryCell.textContent = currentEmployee.salary.toLocaleString("en-US",{
-      style:"currency",
-      currency:"USD"
-    });
-
-    newTableRow.append(salaryCell);
-
-    employeeTable.append(newTableRow);
+  let addMore = true;
+  while (addMore) {
+    const firstName = window.prompt("What is your employee's first name?");
+    const lastName = window.prompt("What is your employee's last name?");
+    const salary = parseFloat(window.prompt("What is your employee's salary?"));
+    const employeeData = {
+      employeeFirstName: firstName,
+      employeeLastName: lastName,
+      employeeSalary: salary
+    }
+    return(employeeData);
   }
 }
+  collectEmployees();
+  // Display the average salary
+  const displayAverageSalary = function (employeesArray) {
+    // TODO: Calculate and display the average salary
+  }
 
-const trackEmployeeData = function() {
-  const employees = collectEmployees();
+  // Select a random employee
+  const getRandomEmployee = function (employeesArray) {
+    // TODO: Select and display a random employee
+  }
 
-  console.table(employees);
+  /*
+    ====================
+    STARTER CODE
+    Do not modify any of the code below this line:
+  */
 
-  displayAverageSalary(employees);
+  // Display employee data in an HTML table
+  const displayEmployees = function (employeesArray) {
+    // Get the employee table
+    const employeeTable = document.querySelector('#employee-table');
 
-  console.log('==============================');
+    // Clear the employee table
+    employeeTable.innerHTML = '';
 
-  getRandomEmployee(employees);
+    // Loop through the employee data and create a row for each employee
+    for (let i = 0; i < employeesArray.length; i++) {
+      const currentEmployee = employeesArray[i];
 
-  employees.sort(function(a,b) {
-    if (a.lastName < b.lastName) {
-      return -1;
-    } else {
-      return 1;
+      const newTableRow = document.createElement("tr");
+
+      const firstNameCell = document.createElement("td");
+      firstNameCell.textContent = currentEmployee.firstName;
+      newTableRow.append(firstNameCell);
+
+      const lastNameCell = document.createElement("td");
+      lastNameCell.textContent = currentEmployee.lastName;
+      newTableRow.append(lastNameCell);
+
+      const salaryCell = document.createElement("td");
+      // Format the salary as currency
+      salaryCell.textContent = currentEmployee.salary.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
+
+      newTableRow.append(salaryCell);
+
+      employeeTable.append(newTableRow);
     }
-  });
+  }
 
-  displayEmployees(employees);
-}
+  const trackEmployeeData = function () {
+    const employees = collectEmployees();
 
-// Add event listener to 'Add Employees' button
-addEmployeesBtn.addEventListener('click', trackEmployeeData);
+    console.table(employees);
+
+    displayAverageSalary(employees);
+
+    console.log('==============================');
+
+    getRandomEmployee(employees);
+
+    employees.sort(function (a, b) {
+      if (a.lastName < b.lastName) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
+    displayEmployees(employees);
+  }
+
+  // Add event listener to 'Add Employees' button
+  addEmployeesBtn.addEventListener('click', trackEmployeeData);
