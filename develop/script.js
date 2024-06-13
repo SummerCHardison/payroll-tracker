@@ -6,6 +6,8 @@ const collectEmployees = function () {
   const employees = [];
   let addMore = true;
 
+  // Above code adds an array that will have objects storing employee data pushed to it later, as well as starts a while loop for prompts.
+
   while (addMore) {
     const employeeFirstName = prompt("What is your employee's first name?");
     const employeeLastName = prompt("What is your employee's last name?");
@@ -20,6 +22,8 @@ const collectEmployees = function () {
         }
       }
 
+      // Above code promts user for employee information and creates a loop that forces a numeric input for the salary prompt.
+
     const employeeData = {
       firstName: employeeFirstName,
       lastName: employeeLastName,
@@ -29,23 +33,31 @@ const collectEmployees = function () {
     employees.push(employeeData);
 
     addMore = confirm("Would you like to add another employee?");
+
+    // Above code creates an object to store employee data and push it to an array, as well as confirms if the user wants to add more employees.
   }
   return employees;
+  // Returns data from array.
 }
 
 // Display the average salary
 const displayAverageSalary = function (employees) {
   const salarySum = employees.reduce((sum, employeeData) => sum + employeeData.salary, 0);
-
+  // The above code calculates the sum of the employees' salarys.
+  
   const averageSalary = salarySum / employees.length
+  // Divides the sum of the salarys by how many employees there are to calculate average.
 
   console.log(`Average Salary: ${averageSalary.toLocaleString("en-US", {style: "currency", currency: "USD"})}`);
+  // Logs salary as valid USD currency to console.
 }
 
 // Select a random employee
 const getRandomEmployee = function (employees) {
   const indexRandom = Math.floor(Math.random() * employees.length);
+  //Picks random number from valid length of array.
   const employeeRandom = employees[indexRandom];
+  //Picks the employee from the array.
 
   console.log(`Random employee: ${employeeRandom.firstName}, ${employeeRandom.lastName}`)
 }
